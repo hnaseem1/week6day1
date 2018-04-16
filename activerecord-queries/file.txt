@@ -1,0 +1,19 @@
+1) Album.where('artist_id = ?', Artist.where('name = ?', 'Queen').ids)
+2) Track.where('media_type_id = ?', MediaType.where('name = ?', 'Protected MPEG-4 video file').ids).count
+3) Genre.where('name = ?', 'Hip Hop/Rap')
+4) Track.where('genre_id = ?', Genre.where('name = ?', 'Hip
+Hop/Rap').ids).count
+5) Track.sum(:milliseconds)/3600
+
+6) Track.where('media_type_id = ?', MediaType.where('name = ?', 'MPEG audio file').ids).maximum(:unit_price)
+
+7) Track.where('unit_price = ?',   Track.where('media_type_id = ?', MediaType.where('name = ?', 'MPEG audio file').ids).maximum(:unit_price)).pluck(:name)
+
+8) Artist.order(created_at: :desc).last(2).pluck(:name)
+
+9) Track.where('unit_price = ?', Track.minimum('unit_price')).pluck(:name)
+
+10) Genre.find_by('name = ? ', 'Electronica/Dance').id
+    MediaType.find_by('name = ? ', 'MPEG audio file').id
+
+11) Track.where(genre_id: Genre.find_by('name = ?', 'Electronica/Dance').id, media_type_id: MediaType.find_by('name = ? ', 'MPEG audio file').id)
